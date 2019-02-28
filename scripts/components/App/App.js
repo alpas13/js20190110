@@ -8,7 +8,7 @@ import DataService from '../../services/DataService.js';
 export default class App {
   constructor({ element }) {
     this._el = element;
-    this._userBalance = 0;
+    this._userBalance = 10000;
 
     this._render();
 
@@ -40,6 +40,10 @@ export default class App {
   _initTradeWidget() {
     this._tradeWidget = new TradeWidget({
       element: this._el.querySelector('[data-element="trade-widget"]'),
+      onConfirm : (item) => {
+        this._portfolio._addItem(item);
+      },
+      balance : this._userBalance,
     });
   }
 
