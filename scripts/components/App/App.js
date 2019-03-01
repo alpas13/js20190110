@@ -1,8 +1,6 @@
 import Table from '../Table/Table.js';
 import Portfolio from '../Portfolio/Portfolio.js';
 import TradeWidget from '../TradeWidget/TradeWidget.js';
-
-
 import DataService from '../../services/DataService.js';
 
 export default class App {
@@ -24,9 +22,10 @@ export default class App {
     this._table = new Table({
       data,
       element: this._el.querySelector('[data-element="table"]'),
-      onRowClick: (id) => {
-        this._tradeItem(id);
-      },
+    })
+
+    this._table.on('rowClick', e => {
+      this._tradeItem(e.detail);
     })
   }
 
@@ -40,11 +39,12 @@ export default class App {
   _initTradeWidget() {
     this._tradeWidget = new TradeWidget({
       element: this._el.querySelector('[data-element="trade-widget"]'),
-      onConfirm : (item) => {
-        this._portfolio._addItem(item);
-      },
-      balance : this._userBalance,
     });
+
+    this._tradeWidget.on('buy', e => {
+      const { item, amount } = e.detail;
+      this._portfolio.addItem(item, amount);
+    })
   }
 
   _tradeItem(id) {
