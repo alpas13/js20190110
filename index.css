@@ -4,7 +4,7 @@ html, body {
 
 #app {
     display: flex;
-    min-height: 100%;
+    height: auto;
     flex-direction: column;
     justify-content: flex-end;
 }
@@ -27,6 +27,26 @@ tr td {
 
 .portfolio-row {
     margin-bottom: auto;
+}
+
+.table-section {
+    position: relative;
+}
+
+.table-options {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+}
+
+.filter, .sorting {
+    float: left;
+    width: 50%;
+}
+
+.input-field {
+    width: 85%;
+    margin-left: 10px;
 }
 
 form, form > div {
