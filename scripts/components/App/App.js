@@ -75,6 +75,12 @@ export default class App {
       element : this._el.querySelector('[data-element="sorting"]'),
       data
     });
+    this._sorting.on('sortActivated', e => {
+      let options = e.detail;
+      if(!options) return;
+
+      this._table._render(options);
+    });
   }
 
   _tradeItem(id) {
